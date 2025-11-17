@@ -1,0 +1,25 @@
+.text-font {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.text-font-bold {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.colors {
+    --color-primary: #44DDFF;
+    --color-secondary: #53599A;
+    --color-accent: black;
+    --color-background: white;
+    --color-text: black;
+}
