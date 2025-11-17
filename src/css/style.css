@@ -2,11 +2,11 @@
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
   /* colors */
-  --primary-color: #f0a868;
-  --secondary-color: #525b0f;
+  --primary-color: #44DDFF;
+  --secondary-color: #53599A;
   --tertiary-color: #a4b8c4;
-  --light-grey: #d0d0d0;
-  --dark-grey: #303030;
+  --light-grey: white;
+  --dark-grey: black;
 
   /* sizes */
   --font-base: 18px;
