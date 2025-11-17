@@ -10,6 +10,7 @@ export default defineConfig({
     outDir: "../dist",
     rollupOptions: {
       input: {
+        partials: resolve(__dirname, "src/partials"),
         main: resolve(__dirname, "src/index.html"),
         cart: resolve(__dirname, "src/cart/index.html"),
         checkout: resolve(__dirname, "src/checkout/index.html"),
