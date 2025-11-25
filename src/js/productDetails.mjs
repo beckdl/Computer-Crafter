@@ -12,6 +12,7 @@ export default async function productDetails(productId) {
     
     return;
   }
+  console.log(product);
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // once the HTML is rendered we can add a listener to Add to Cart button
@@ -29,15 +30,15 @@ export async function addProductToCart(product) {
 }
 
 function renderProductDetails() {
-    document.querySelector("#productName").innerText = product.Brand.Name;
+    document.querySelector("#productName").innerText = product.brand;
     document.querySelector("#productNameWithoutBrand").innerText =
-      product.NameWithoutBrand;
-    document.querySelector("#productImage").src = product.Images.PrimaryLarge;
-    document.querySelector("#productImage").alt = product.Name;
-    document.querySelector("#productFinalPrice").innerText = product.FinalPrice;
+      product.name;
+    document.querySelector("#productImage").src = product.image;
+    document.querySelector("#productImage").alt = product.image_name;
+    document.querySelector("#productFinalPrice").innerText = product.price;
     document.querySelector("#productColorName").innerText =
-      product.Colors[0].ColorName;
+      product.color;
     document.querySelector("#productDescriptionHtmlSimple").innerHTML =
-      product.DescriptionHtmlSimple;
-    document.querySelector("#addToCart").dataset.id = product.Id;
+      product.description;
+    document.querySelector("#addToCart").dataset.id = product._id;
 }

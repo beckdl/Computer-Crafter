@@ -10,15 +10,15 @@ async function convertToJson(res) {
 }
 
 export async function getProductsByCategory(category) {
-  const response = await fetch(baseUrl +`/products/search/${category}`);
+  const response = await fetch(baseUrl +`/${category}`);
   const data = await convertToJson(response);
-  return data.Result;
+  return data;
 }
 
 export async function findProductById(id) {
-  const response = await fetch(baseUrl + `/product/${id}`);
+  const response = await fetch(baseUrl + `/${id}`);
   const product = await convertToJson(response);
-  return product.Result;
+  return product;
 }
 
 export async function checkout(payload) {

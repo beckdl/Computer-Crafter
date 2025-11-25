@@ -3,6 +3,7 @@ import productDetails from "./productDetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 const productId = getParam("product");
+
 productDetails(productId);
 
 // add to cart button event handler
