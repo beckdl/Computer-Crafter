@@ -14,8 +14,7 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
-  const simplifiedItems = items.map((item) => {
-    console.log(item);
+  const simplifiedItems = items.map((item) => {;
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -50,8 +49,13 @@ const checkoutProcess = {
     );
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
-    const amounts = this.list.map((item) => item.FinalPrice);
-    this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    const amounts = this.list.map((item) => item.price);
+    this.itemTotal = Number(
+      amounts.reduce(
+      (sum, amt) => sum + (parseFloat(String(amt).replace(/[^0-9.-]+/g, "")) || 0),
+      0
+      ).toFixed(2)
+    );
     summaryElement.innerText = "$" + this.itemTotal;
   },
   calculateOrdertotal: function () {
@@ -59,9 +63,9 @@ const checkoutProcess = {
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
-      parseFloat(this.itemTotal) +
-      parseFloat(this.shipping) +
-      parseFloat(this.tax)
+      parseFloat(String(this.itemTotal).replace(/[^0-9.-]+/g, "")) +
+      parseFloat(String(this.shipping).replace(/[^0-9.-]+/g, "")) +
+      parseFloat(String(this.tax).replace(/[^0-9.-]+/g, ""))
     ).toFixed(2);
     this.displayOrderTotals();
   },

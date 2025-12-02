@@ -1,5 +1,6 @@
 import { findProductById } from "./externalServices.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { getParam } from "./utils.mjs";
 
 let product = {};
 
@@ -30,15 +31,30 @@ export async function addProductToCart(product) {
 }
 
 function renderProductDetails() {
+  let area = getParam("product");
+
+  if (area == "prebuilt/" + product._id) {
     document.querySelector("#productName").innerText = product.brand;
-    document.querySelector("#productNameWithoutBrand").innerText =
-      product.name;
+    document.querySelector("#productNameWithoutBrand").innerText = product.name;
     document.querySelector("#productImage").src = product.image;
     document.querySelector("#productImage").alt = product.image_name;
     document.querySelector("#productFinalPrice").innerText = product.price;
-    document.querySelector("#productColorName").innerText =
-      product.color;
-    document.querySelector("#productDescriptionHtmlSimple").innerHTML =
-      product.description;
+    document.querySelector("#productColorName").innerText = product.color;
+    document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
     document.querySelector("#addToCart").dataset.id = product._id;
+  }
+  if (area == "comp-repair/" + product._id) {
+    document.querySelector("#productNameWithoutBrand").innerText = product.name;
+    document.querySelector("#productImage").src = product.image;
+    document.querySelector("#productImage").alt = product.image_name;
+    document.querySelector("#productFinalPrice").innerText = product.price;
+    document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
+    document.querySelector("#addToCart").dataset.id = product._id;
+  }
+  if (area == "soft-dev/" + product._id) {
+    document.querySelector("#productNameWithoutBrand").innerText = product.name;
+    document.querySelector("#productFinalPrice").innerText = product.price;
+    document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
+    document.querySelector("#addToCart").dataset.id = product._id;
+  }
 }

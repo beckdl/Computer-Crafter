@@ -50,8 +50,15 @@ function calculateListTotal(list) {
   if (!list || list.length === 0) {
     return 0;
   } else {
-    const amounts = list.map((item) => {return item.FinalPrice});
-    const total = amounts.reduce((sum, item) => sum + item, 0);
+    const amounts = list.map((item) => {return item.price});
+    const total = Number(
+      amounts.reduce(
+      (sum, amt) => sum + (parseFloat(String(amt).replace(/[^0-9.-]+/g, "")) || 0),
+      0
+      ).toFixed(2)
+    );
     return total;
   }
 }
+
+//amounts.reduce((sum, item) => sum + item, 0);

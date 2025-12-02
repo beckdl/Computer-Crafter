@@ -9,7 +9,7 @@ document
   .querySelector("#zip")
   .addEventListener(
     "blur",
-    checkoutProcess.calculateOrdertotal.bind(checkoutProcess)
+    checkoutProcess.calculateOrdertotal.bind(checkoutProcess),
   );
 
 // this is how it would look if we listen for the submit on the form
