@@ -13,7 +13,6 @@ export default async function productDetails(productId) {
     
     return;
   }
-  console.log(product);
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // once the HTML is rendered we can add a listener to Add to Cart button
@@ -22,6 +21,14 @@ export default async function productDetails(productId) {
 
 export async function addProductToCart(product) {
     const currentCart = getLocalStorage("so-cart");
+    let area = getParam("product");
+
+    // For software development products, include customer input in the product object
+    if (area.startsWith("soft-dev/")) {
+      const customerInput = document.getElementById("customerInput").value;
+      product = { ...product, customerInput: customerInput };
+    }
+
     if (!currentCart || currentCart.length === 0) {
       setLocalStorage("so-cart", [product]);
       return;
@@ -38,7 +45,7 @@ function renderProductDetails() {
     document.querySelector("#productNameWithoutBrand").innerText = product.name;
     document.querySelector("#productImage").src = product.image;
     document.querySelector("#productImage").alt = product.image_name;
-    document.querySelector("#productFinalPrice").innerText = product.price;
+    document.querySelector("#productFinalPrice").innerText = "$" + product.price;
     document.querySelector("#productColorName").innerText = product.color;
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
     document.querySelector("#addToCart").dataset.id = product._id;
@@ -47,14 +54,20 @@ function renderProductDetails() {
     document.querySelector("#productNameWithoutBrand").innerText = product.name;
     document.querySelector("#productImage").src = product.image;
     document.querySelector("#productImage").alt = product.image_name;
-    document.querySelector("#productFinalPrice").innerText = product.price;
+    document.querySelector("#productFinalPrice").innerText = "$" + product.price;
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
     document.querySelector("#addToCart").dataset.id = product._id;
+    document.querySelector("#productColorName").classList.add("hide");
+    document.querySelector("#productName").classList.add("hide");
   }
   if (area == "soft-dev/" + product._id) {
     document.querySelector("#productNameWithoutBrand").innerText = product.name;
-    document.querySelector("#productFinalPrice").innerText = product.price;
+    document.querySelector("#productFinalPrice").innerText = "$" + product.price;
     document.querySelector("#productDescriptionHtmlSimple").innerHTML = product.description;
     document.querySelector("#addToCart").dataset.id = product._id;
+    document.querySelector("#productColorName").classList.add("hide");
+    document.querySelector("#productName").classList.add("hide");
+    document.querySelector("#productImage").classList.add("hide");
+    document.querySelector("#customerInput").classList.remove("hide");
   }
 }

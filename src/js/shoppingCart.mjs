@@ -2,22 +2,54 @@ import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 
 export function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.image}"
-      alt="${item.image_name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.name}</h2>
-  </a>
-  <p class="cart-card__color">${item.color}</p>
-  <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.price}</p>
-</li>`;
+  if (item.name === "Basic Computer" || item.name === "Moderate Computer" || item.name === "High End Computer") {
+    const newItem = `<li class="cart-card divider">
+      <a href="#" class="cart-card__image">
+        <img
+          src="${item.image}"
+          alt="${item.image_name}"
+        />
+      </a>
+      <a href="#">
+        <h2 class="card__name">${item.name}</h2>
+      </a>
+      <p class="cart-card__color">${item.color}</p>
+      <p class="cart-card__quantity">qty: 1</p>
+      <p class="cart-card__price">$${item.price}</p>
+    </li>`;
 
-  return newItem;
+    return newItem;
+  }
+
+  if (item.name === "Virus Removal" || item.name === "Computer Setup and Installation" || item.name === "System Speedup") {
+    const newItem = `<li class="cart-card divider">
+      <a href="#" class="cart-card__image">
+        <img
+          src="${item.image}"
+          alt="${item.image_name}"
+        />
+      </a>
+      <a href="#">
+        <h2 class="card__name">${item.name}</h2>
+      </a>
+      <p class="cart-card__quantity">qty: 1</p>
+      <p class="cart-card__price">$${item.price}</p>
+    </li>`;
+
+    return newItem;
+  }
+
+  if (item.name === "Building an Application" || item.name === "Website Building and Management" || item.name === "Hold a Coding Class") {
+    const newItem = `<li class="cart-card divider">
+      <a href="#">
+        <h2 class="card__name">${item.name}</h2>
+      </a>
+      <p class="cart-card__quantity">qty: 1</p>
+      <p class="cart-card__price">$${item.price}</p>
+    </li>`;
+
+    return newItem;
+  }
 }
 
 export function renderCartContents() {
