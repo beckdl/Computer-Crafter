@@ -71,13 +71,31 @@ export function loadTemplate(path) {
     };
 }
 
+
+
 export async function loadHeaderFooter() {
+  let code = getLocalStorage('code');
+  let state = getLocalStorage('state');
+  if (code === null || state === null) {
+    const urlParams = new URLSearchParams(window.location.search);
+    code = urlParams.get('code');
+    state = urlParams.get('state');
+  }
+
   const headerTemplateFn = loadTemplate("../partials/header.html");
   const headerEl = document.querySelector("#main-header");
   const footerTemplateFn = loadTemplate("../partials/footer.html");
   const footerEl = document.querySelector("#main-footer");
-  renderWithTemplate(headerTemplateFn, headerEl);
+  await renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
+  if (code !== null && state !== null) {
+    const encodedCode = encodeURIComponent(code);
+    const encodedState = encodeURIComponent(state);
+    setLocalStorage('code', encodedCode);
+    setLocalStorage('state', encodedState);
+
+    document.querySelector("#mainLogin").href = `/login/index.html?code=${encodedCode}&state=${encodedState}`;
+  }
 }
 
 export function alertMessage(message, scroll = true, duration = 3000) {

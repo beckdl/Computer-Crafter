@@ -1,4 +1,7 @@
 const baseUrl = import.meta.env.VITE_SERVER_URL;
+const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+const clientSecret = import.meta.env.VITE_AUTHO_CLIENT_SECRET;
+const tokenUrl = import.meta.env.VITE_AUTH0_TOKEN_URL;
 
 async function convertToJson(res) {
   const data = await res.json();
@@ -32,16 +35,29 @@ export async function checkout(payload) {
   return await fetch(baseUrl + "/checkout/", options).then(convertToJson);
 }
 
-export async function loginRequest(user) {
+export async function loginRequest() {
   const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify({
+      "client_id":clientId,
+      "client_secret":clientSecret,
+      "audience":baseUrl,
+      "grant_type":"client_credentials"
+    }),
   };
-  const response = await fetch(baseUrl + "/login", options).then(convertToJson);
-  return response.accessToken;
+  try {
+    const response = await fetch(tokenUrl, options);
+    if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+    const data = await response.json();
+    return data.access_token;
+  } catch (error) {
+    console.error('Error fetching token:', error);
+  }
 }
 
 export async function getOrders(token) {
