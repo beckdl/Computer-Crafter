@@ -209,6 +209,31 @@ button {
   font-weight: 400;
 }
 
+.register-tag {
+  text-align: center;
+  margin-top: 1em;
+  font-size: var(--font-base);
+}
+
+.register-tag a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.account button {
+  margin-bottom: 2rem;
+}
+
+.account button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.account a {
+  text-decoration: none;
+}
+
 .button {
   padding: 1.1rem 2.8rem;
   font-size: 1.2rem;

@@ -1,5 +1,5 @@
 import { loginRequest } from "./externalServices.mjs";
-import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, removeAllAlerts, setLocalStorage } from "./utils.mjs";
 import { jwtDecode } from "jwt-decode";
 
 const tokenKey = "so-token";
@@ -50,18 +50,17 @@ export async function login(creds, redirect = "/") {
   try {
     const userDatabase = await loginRequest();
     userDatabase.forEach(entry => {
-      if (creds.email !== entry.username || creds.password !== entry.password) {
-        return
+      if (creds.email === entry.username && creds.password === entry.password) {
+        sessionStorage.setItem("loggedIn", "true");
+        sessionStorage.setItem(tokenKey, entry.token);
+        sessionStorage.setItem("id", entry._id);
+        window.location.assign(redirect);
+        return;
       }
-      if (!entry.token) {
-        throw new Error('Incorrect username or password');
-      }
-      setLocalStorage("loggedIn", "true");
-      setLocalStorage(tokenKey, entry.token);
-      setLocalStorage("id", entry._id);
-      window.location.assign(redirect);
-      });
+    });
+    throw new Error("Invalid username or password");
   } catch (err) {
-    alertMessage(err.message.message);
+    removeAllAlerts();
+    alertMessage(err.message);
   }
 }

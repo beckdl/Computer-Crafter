@@ -1,7 +1,12 @@
 import { getAccountById } from "./externalServices.mjs";
 
 export async function getAccountInfo(id) {
-    const account = getAccountById(id);
-    document.querySelector("#name").innerText = account.name;
-    document.querySelector("#email").innerText = account.username;
+    const account = await getAccountById(id);
+    console.log(account);
+    document.querySelector("#name").innerHTML = `${account.name}`;
+    document.querySelector("#email").innerHTML = `${account.username}`;
+    document.querySelector("#address").innerHTML = `${account.address}`;
+    if (account.token === "admin") {
+        document.querySelector("#orders").classList.remove("hide");
+    }
 }

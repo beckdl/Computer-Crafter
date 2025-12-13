@@ -9,18 +9,16 @@
   </head>
   <body>
     <header class="divider" id="main-header"></header>
-    <main class="divider">
+    <main class="account divider">
         <h1>Your Account</h1>
         <section class="account-info">
             <h2>Account Information</h2>
             <p><strong>Name:</strong> <span id="name"></span></p>
             <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Address:</strong> <span id="address"></span></p>
         </section>
-        <section class="order-history">
-            <h2>Order History</h2>
-            <ul id="order-list">
-                <!-- Orders will be populated here -->
-            </ul>
+        <section id="orders" class="order-history hide">
+            <a href="../orders/index.html"><button id="viewOrdersButton">View Order History</button></a>
         </section>
         <button id="logoutButton">Logout</button>
     </main>

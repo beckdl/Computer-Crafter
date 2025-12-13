@@ -16,9 +16,9 @@ function formDataToJSON(formElement) {
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {;
     return {
-      id: item.Id,
-      price: item.FinalPrice,
-      name: item.Name,
+      id: item._id,
+      price: item.price,
+      name: item.name,
       quantity: 1,
     };
   });

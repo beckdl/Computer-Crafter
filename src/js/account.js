@@ -2,14 +2,17 @@ import { getLocalStorage, loadHeaderFooter, setLocalStorage } from "./utils.mjs"
 import { getAccountInfo } from "./account.mjs";
 
 loadHeaderFooter();
-const id = getLocalStorage("id");
+const id = sessionStorage.getItem("id");
 
 getAccountInfo(id);
 
+
+
 document.addEventListener("click", (e) => {
   if (e.target && e.target.id === "logoutButton") {
-    setLocalStorage("loggedIn", "false");
-    localStorage.removeItem("so-token");
+    sessionStorage.removeItem("loggedIn", "false");
+    sessionStorage.removeItem("so-token");
+    sessionStorage.removeItem("id");
     window.location.href = "/index.html";
   }
 });

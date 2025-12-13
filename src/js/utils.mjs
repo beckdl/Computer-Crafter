@@ -80,7 +80,7 @@ export async function loadHeaderFooter() {
   const footerEl = document.querySelector("#main-footer");
   await renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
-  if (getLocalStorage("loggedIn") === "true") {
+  if (sessionStorage.getItem("loggedIn") === "true") {
     document.querySelector("#loginButton").classList.add("hide");
     document.querySelector("#accountButton").classList.remove("hide");
   }

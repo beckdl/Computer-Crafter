@@ -57,17 +57,23 @@ export async function loginRequest() {
 export async function getAccountById(id) {
   const response = await fetch(baseUrl + `/login/${id}`);
   const account = await convertToJson(response);
+
   return account;
 }
 
-export async function getOrders(token) {
+export async function register(user) {
   const options = {
-    method: "GET",
-    // the server will reject our request if we don't include the Authorization header with a valid token!
+    method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify(user),
   };
-  const response = await fetch(baseUrl + "/orders", options).then(convertToJson);
+  const response = await fetch(baseUrl + "/login", options).then(convertToJson);
+  return response;
+}
+
+export async function getOrders() {
+  const response = await fetch(baseUrl + "/checkout").then(convertToJson);
   return response;
 }
