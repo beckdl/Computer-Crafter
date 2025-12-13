@@ -48,9 +48,19 @@ export function checkLogin() {
 
 export async function login(creds, redirect = "/") {
   try {
-    const token = await loginRequest(creds);
-    setLocalStorage(tokenKey, token);
-    location.assign(redirect);
+    const userDatabase = await loginRequest();
+    userDatabase.forEach(entry => {
+      if (creds.email !== entry.username || creds.password !== entry.password) {
+        return
+      }
+      if (!entry.token) {
+        throw new Error('Incorrect username or password');
+      }
+      setLocalStorage("loggedIn", "true");
+      setLocalStorage(tokenKey, entry.token);
+      setLocalStorage("id", entry._id);
+      window.location.assign(redirect);
+      });
   } catch (err) {
     alertMessage(err.message.message);
   }

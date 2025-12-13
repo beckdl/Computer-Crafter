@@ -37,27 +37,27 @@ export async function checkout(payload) {
 
 export async function loginRequest() {
   const options = {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "client_id":clientId,
-      "client_secret":clientSecret,
-      "audience":baseUrl,
-      "grant_type":"client_credentials"
-    }),
+    }
   };
   try {
-    const response = await fetch(tokenUrl, options);
+    const response = await fetch(baseUrl + "/login", options);
     if (!response.ok) {
           throw new Error('Network response was not ok');
       }
     const data = await response.json();
-    return data.access_token;
+    return data
   } catch (error) {
-    console.error('Error fetching token:', error);
-  }
+    console.error('Error fetching Data:', error);
+  };
+}
+
+export async function getAccountById(id) {
+  const response = await fetch(baseUrl + `/login/${id}`);
+  const account = await convertToJson(response);
+  return account;
 }
 
 export async function getOrders(token) {
