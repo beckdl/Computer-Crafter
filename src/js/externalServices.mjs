@@ -77,3 +77,8 @@ export async function getOrders() {
   const response = await fetch(baseUrl + "/checkout").then(convertToJson);
   return response;
 }
+
+export async function getOrderById(id) {
+  const response = await fetch(baseUrl + `/checkout/${id}`).then(convertToJson);
+  return response;
+}

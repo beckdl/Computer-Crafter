@@ -6,25 +6,27 @@
     <title>Computer Crafter | Orders</title>
     <link rel="stylesheet" href="/css/style.css" />
 
-    <script type="module" src="../js/orders.js"></script>
+    <script type="module" src="../js/orderDetails.js"></script>
   </head>
   <body>
     <header class="divider" id="main-header"></header>
-    <main class="orders divider">
-      <h2>Current Orders</h2>
-      <table id="orders">
+    <main class="orderDetails divider">
+      <h2 id="orderHeader"></h2>
+      <p id="order-name"></p>
+      <p id="order-date"></p>
+      <p id="order-address"></p>
+      <table id="order-items">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Id</th>
-            <th>Date</th>
-            <th>#Items</th>
-            <th>Total</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th id="notes" class="hide">User Notes</th>
           </tr>
         </thead>
-
-        <tbody class="order-body"></tbody>
+    
+        <tbody class="order-items-body"></tbody>
       </table>
+      <h3 id="order-total"></h3>
     </main>
     <footer id="main-footer"></footer>
   </body>

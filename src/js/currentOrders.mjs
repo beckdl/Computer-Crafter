@@ -16,5 +16,7 @@ function orderTemplate(order) {
   <td>${order._id}</td>
   <td>${new Date(order.orderDate).toLocaleDateString("en-US")}</td>
   <td>${order.items.length}</td>
-  <td>${order.orderTotal}</td></tr>`;
+  <td>${order.orderTotal}</td>
+  <td><a href="../orders/details.html?order=${order._id}">More Details</a></td>
+  </tr>`;
 }

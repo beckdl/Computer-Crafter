@@ -15,12 +15,22 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {;
-    return {
-      id: item._id,
-      price: item.price,
-      name: item.name,
-      quantity: 1,
-    };
+    if (item.customerInput) {
+      return {
+        id: item._id,
+        price: item.price,
+        name: item.name,
+        quantity: 1,
+        customerInput: item.customerInput,
+      };
+    } else {
+      return {
+        id: item._id,
+        price: item.price,
+        name: item.name,
+        quantity: 1,
+      };
+    }
   });
   return simplifiedItems;
 }
