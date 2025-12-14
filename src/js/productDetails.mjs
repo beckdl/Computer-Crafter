@@ -1,5 +1,5 @@
 import { findProductById } from "./externalServices.mjs";
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartCount } from "./utils.mjs";
 import { getParam } from "./utils.mjs";
 
 let product = {};
@@ -33,8 +33,15 @@ export async function addProductToCart(product) {
       setLocalStorage("so-cart", [product]);
       return;
     }
+    const existingItem = currentCart.find(item => item._id === product._id);
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+      setLocalStorage("so-cart", currentCart);
+      return;
+    }
     currentCart.push(product);
     setLocalStorage("so-cart", currentCart);
+    updateCartCount(true);
 }
 
 function renderProductDetails() {

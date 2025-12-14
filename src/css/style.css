@@ -435,6 +435,36 @@ button {
   fill: gray;
 }
 
+/*Cart badge showing number of products in cart*/
+.cart-count {
+  position: absolute;
+  top: 20px;
+  right: 4px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: none;
+}
+/*Cart animation*/
+@keyframes cart-bump {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-bump {
+  animation: cart-bump 0.3s ease;
+}
+
 /* End cart icon styles */
 
 /* product grid styles */
@@ -606,38 +636,77 @@ button {
 
 /* Start cart list card styles */
 .cart-card {
-  display: grid;
-  grid-template-columns: 25% auto 15%;
-  font-size: var(--small-font);
-  /* max-height: 120px; */
-  align-items: center;
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
 }
 
-.cart-card__image {
-  grid-row: 1/3;
-  grid-column: 1;
-}
-.cart-card p {
-  margin-top: 0;
-}
-.cart-card .card__name {
-  grid-row: 1;
-  grid-column: 2;
+.cart-card__image img {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
-.cart-card__color {
-  grid-row: 2;
-  grid-column: 2;
+.card__name {
+  width: 250px;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  padding-top: 2rem;
 }
 
-.cart-card__quantity {
-  grid-row: 1;
-  grid-column: 3;
-}
-
+.cart-card__color,
+.cart-card__quantity,
 .cart-card__price {
-  grid-row: 2;
-  grid-column: 3;
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  align-self: center;
+}
+
+.cart-remove {
+  position: absolute;
+  top: 1rem;
+  right: -1rem;
+  background: transparent;
+  color: #666;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  z-index: 50;
+}
+
+.cart-remove:hover {
+  color: #000;
+}
+
+.quantity-btn {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: var(--font-base);
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.quantity-btn:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.quantity-number {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 5px;
 }
 
 @media screen and (min-width: 500px) {
