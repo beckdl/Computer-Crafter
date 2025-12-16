@@ -42,6 +42,7 @@ export async function addProductToCart(product) {
     currentCart.push(product);
     setLocalStorage("so-cart", currentCart);
     updateCartCount(true);
+    window.location.reload();
 }
 
 function renderProductDetails() {
