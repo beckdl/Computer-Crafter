@@ -21,6 +21,8 @@ export default defineConfig({
         orders: resolve(__dirname, "src/orders/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
         account: resolve(__dirname, "src/account/index.html"),
+        order_details: resolve(__dirname, "src/orders/details.html"),
+        register: resolve(__dirname, "src/register/index.html"),
       },
     },
   },
