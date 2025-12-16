@@ -84,6 +84,7 @@ export async function loadHeaderFooter() {
     document.querySelector("#loginButton").classList.add("hide");
     document.querySelector("#accountButton").classList.remove("hide");
   }
+  updateCartCount();
 }
 
 export function updateCartCount(animate = false) {
