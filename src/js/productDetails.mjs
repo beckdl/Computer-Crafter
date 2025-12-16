@@ -37,12 +37,12 @@ export async function addProductToCart(product) {
     if (existingItem) {
       existingItem.quantity = (existingItem.quantity || 1) + 1;
       setLocalStorage("so-cart", currentCart);
+      updateCartCount(true);
       return;
     }
     currentCart.push(product);
     setLocalStorage("so-cart", currentCart);
     updateCartCount(true);
-    window.location.reload();
 }
 
 function renderProductDetails() {
