@@ -31,6 +31,7 @@ export async function addProductToCart(product) {
 
     if (!currentCart || currentCart.length === 0) {
       setLocalStorage("so-cart", [product]);
+      updateCartCount(true);
       return;
     }
     const existingItem = currentCart.find(item => item._id === product._id);
